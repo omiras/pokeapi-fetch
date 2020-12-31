@@ -41,12 +41,12 @@
         select.addEventListener('change', getNewPokemon)
         button.addEventListener('click', changeToShiny)
 
-        let url = "https://pokeapi.co/api/v2/pokemon/"
+        let url_original = "https://pokeapi.co/api/v2/pokemon/"
         let url_shiny = ""
 
         function getNewPokemon(event) {
         let nombrePokemon = event.target.value
-        url = url + nombrePokemon
+        let url = url_original + nombrePokemon
         fetch(url).
         then(response => response.json()).
         then(data => updatePokemon(data))
