@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top d-none"
+                src=""
+                alt="Card image cap" data-shiny-url="">
+            <div class="card-body">
+                <h5 class="card-title" style=" text-transform: capitalize;">Lorepokemon</h5>
+                <a href="#" class="btn btn-success" onClick="changeToShiny()">Change to Shiny</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <select class="form-select" aria-label="Default select example" onchange="getNewPokemon(event)">
+            <option selected>Select one pokemon</option>
+            <option value="pikachu">Pikachu</option>
+            <option value="charmander">Charmander</option>
+            <option value="luxio">Luxio</option>
+            <option value="ralts">Ralts</option>
+            <option value="xatu">Xatu</option>
+            <option value="ekans">Ekans</option>
+            <option value="ariados">Ariados</option>
+          </select>
+    </div>
+    <script src="https://unpkg.com/pokeapi-js-wrapper/dist/index.js"></script>
+    <script>
+        const P = new Pokedex.Pokedex()
+
+        function getNewPokemon(event) {
+
+            P.getPokemonByName(event.target.value) // with Promise
+                .then(function (response) {
+                    console.log(response)
+                    updatePokemon(response)
+                })
+        }
+
+        function updatePokemon(response) {
+            document.querySelector('.card-img-top').classList.remove('d-none')
+            document.querySelector('.card-img-top').src = response.sprites.front_default
+            document.querySelector('.card-img-top').setAttribute('data-shiny-url', response.sprites.front_shiny )
+            document.querySelector('.card-title').textContent = response.name;
+                   
+        }
+
+        function changeToShiny() {
+            let img = document.querySelector('.card-img-top')
+            img.src = img.getAttribute('data-shiny-url')
+        }
+
+    </script>
+</body>
+
+</html>

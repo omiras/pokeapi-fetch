@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+
+<body>
+    <div class="container">
+        <div class="card" style="width: 18rem;">
+            <img class="card-img-top d-none"
+                src=""
+                alt="Card image cap" data-shiny-url="">
+            <div class="card-body">
+                <h5 class="card-title" style=" text-transform: capitalize;">Lorepokemon</h5>
+                <a href="#" class="btn btn-success">Change to Shiny</a>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <select class="form-select" aria-label="Default select example">
+            <option selected>Select one pokemon</option>
+            <option value="pikachu">Pikachu</option>
+            <option value="charmander">Charmander</option>
+            <option value="luxio">Luxio</option>
+            <option value="ralts">Ralts</option>
+            <option value="xatu">Xatu</option>
+            <option value="ekans">Ekans</option>
+            <option value="ariados">Ariados</option>
+          </select>
+    </div>
+    <script>
+        function getNewPokemon(event) {
+        // Hacer que cada vez que se cambie el valor del select, se invoque esta función. Hacer una llamada con la Fetch API al endpoint para obtener los pokemons por nombre de pokemon. Debeis usar su nombre de pokemon como parte dinámica de la URL
+
+        }
+
+        function updatePokemon(response) {
+            // cuando se ha completado el Fetch, este debe hacer una llamada a esta función pasando por parámetro los datos recibidos.
+            // La función debe actualizar los elementos del DOM: imagen del pokemon, nombre, y guardar en algun lugar la ruta a la foto "shiny" del pokemon
+        }
+
+        function changeToShiny() {
+            // esta función debe ser llamada al hacer clic en el botón "Change to Shiny"; de manera que actualice la imagen a la versión "shiny" del Pokemon
+        }
+
+    </script>
+</body>
+
+</html>
