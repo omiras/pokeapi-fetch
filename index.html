@@ -30,22 +30,40 @@
             <option value="ralts">Ralts</option>
             <option value="xatu">Xatu</option>
             <option value="ekans">Ekans</option>
-            <option value="ariados">Ariados</option>
+            <option value="deoxys">Deoxys</option>
           </select>
     </div>
     <script>
+        // 1 . Hacer que cada vez que se cambie el valor del select, se invoque esta función
+        let select = document.querySelector('.form-select')
+        let button = document.querySelector('.btn')
+
+        select.addEventListener('change', getNewPokemon)
+        button.addEventListener('click', changeToShiny)
+
+        let url = "https://pokeapi.co/api/v2/pokemon/"
+        let url_shiny = ""
+
         function getNewPokemon(event) {
-        // Hacer que cada vez que se cambie el valor del select, se invoque esta función. Hacer una llamada con la Fetch API al endpoint para obtener los pokemons por nombre de pokemon. Debeis usar su nombre de pokemon como parte dinámica de la URL
+        let nombrePokemon = event.target.value
+        url = url + nombrePokemon
+        fetch(url).
+        then(response => response.json()).
+        then(data => updatePokemon(data))
+        // Hacer una llamada con la Fetch API al endpoint para obtener los datos del pokemon a partir del nombre del pokemon. Debeis usar su nombre de pokemon como parte dinámica de la URL
 
         }
 
-        function updatePokemon(response) {
-            // cuando se ha completado el Fetch, este debe hacer una llamada a esta función pasando por parámetro los datos recibidos.
-            // La función debe actualizar los elementos del DOM: imagen del pokemon, nombre, y guardar en algun lugar la ruta a la foto "shiny" del pokemon
+        function updatePokemon(data) {
+            console.log(data)
+            document.querySelector('.card-img-top').classList.remove('d-none')
+            document.querySelector('.card-img-top').src = data.sprites.front_default
+            document.querySelector('.card-title').textContent = data.name;
+            url_shiny = data.sprites.front_shiny
         }
 
         function changeToShiny() {
-            // esta función debe ser llamada al hacer clic en el botón "Change to Shiny"; de manera que actualice la imagen a la versión "shiny" del Pokemon
+            document.querySelector('.card-img-top').src = url_shiny
         }
 
     </script>
