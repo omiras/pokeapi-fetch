@@ -6,6 +6,10 @@ Además, al hacer clic en el botón **Change to Shiny** se debe cargar la imagen
 
 ## BONUS
 
-- El selector de pokemons deberia **bloquearse** hasta que no hemos conseguido cargar el pokemon, y **desbloquearse** una vez cargado (mirar atributo __disabled__)
-- Existe una bilbioteca para facilitar la comunicación con esta API.
+- El selector de pokemons deberia **bloquearse** hasta que no hemos conseguido cargar el pokemon, y **desbloquearse** una vez cargado (mirar atributo __disabled__) [Bootstrap disbled](https://getbootstrap.com/docs/5.0/forms/form-control/#disabled)
+- Actualmente, la lista de Pokemon se llena "manualmente" desde el HTML. Crea una función que permite crear tantos <option> como especifique una variable de estado; realizando una llamada a la la PokeApi.
+  - Deberás realizar una llamada a la PokeApi pasándole un parámetro por QueryString. Por ejemplo, la siguiente llamada a la PokeApi devuelve los **10** primeros Pokemons de la base de datos [ejemplo](https://pokeapi.co/api/v2/pokemon?limit=10)
+  - ¿Cómo se hace para crear opciones de un control <select>? [Ayuda](https://www.w3schools.com/jsref/met_select_add.asp)
+  - ¿Puedes hacer que dicha variable de estado sea establecida desde un control en la interfaz de usuario?
+- Existe una **biblioteca** para facilitar la comunicación con esta API.
 Búscala en la documentación y úsala en vez de hacer las llamadas directamente a la API.
