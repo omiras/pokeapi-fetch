@@ -69,10 +69,10 @@
                 then(response => response.json()).
                 then(data => {
                     console.log(data)
-                    removeOptions(document.querySelector('#select-pokemon'))
-                    fillOptions(document.querySelector('#select-pokemon'), data.results)
-                    enableControl(document.querySelector('#pokemon-number'))
-                    enableControl(document.querySelector('#select-pokemon'))
+                    removeOptions(selectPokemon)
+                    fillOptions(selectPokemon, data.results)
+                    enableControl(selectPokemon)
+                    enableControl(pokemonNumber)
                 })
         }
 
