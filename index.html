@@ -21,91 +21,15 @@
     </div>
     <div class="container">
         <div class="input-group mb-3">
-
-            <label for="select-pokemon"> Which pokemon do you want to display?</label>
-            <select id="select-pokemon" class="form-select" aria-label="Default select example">
+            <span class="input-group-text" id="selected-pokemon-label">Which pokemon do you want to display?</span>
+            <select id="select-pokemon" class="form-select" aria-label="selected pokemon" aria-describedby="selected-pokemon-label">
+                <option selected>Select one pokemon</option>
+                <option value="pikachu">Pikachu</option>
+                <option value="charmander">Charmander</option>
+                <option value="luxio">Luxio</option>
             </select>
         </div>
-
-        <div class="input-group mb-3">
-            <label for="pokemon-number">How many pokemons do you want to retrieve?</label>
-            <input type="number" min="1" max="20" value="10" id="pokemon-number" oninput="getSomePokemons(this.value)">
-        </div>
     </div>
-    <script>
-        // 1 . Hacer que cada vez que se cambie el valor del select, se invoque esta función
-        let select = document.querySelector('.form-select')
-        let button = document.querySelector('.btn')
-
-        select.addEventListener('change', getNewPokemon)
-        button.addEventListener('click', changeToShiny)
-
-        let url_original = "https://pokeapi.co/api/v2/pokemon/"
-        let url_shiny = ""
-
-        function getNewPokemon(event) {
-            let nombrePokemon = event.target.value
-            let url = url_original + nombrePokemon
-            fetch(url).
-                then(response => response.json()).
-                then(data => updatePokemon(data))
-            // Hacer una llamada con la Fetch API al endpoint para obtener los datos del pokemon a partir del nombre del pokemon. Debeis usar su nombre de pokemon como parte dinámica de la URL
-
-        }
-
-        function getSomePokemons(howMany) {
-
-
-            let url = 'https://pokeapi.co/api/v2/pokemon?limit=' + howMany;
-
-            disableControl(document.querySelector('#pokemon-number'))
-            disableControl(document.querySelector('#select-pokemon'))
-
-            fetch(url).
-                then(response => response.json()).
-                then(data => {  
-                    console.log(data)
-                    fillOptions(data.results)
-                    enableControl(document.querySelector('#pokemon-number'))
-                    enableControl(document.querySelector('#select-pokemon'))
-                })
-        }
-
-        function updatePokemon(data) {
-            console.log(data)
-            document.querySelector('.card-img-top').classList.remove('d-none')
-            document.querySelector('.card-img-top').src = data.sprites.front_default
-            document.querySelector('.card-title').textContent = data.name;
-            url_shiny = data.sprites.front_shiny
-        }
-
-        function changeToShiny() {
-            document.querySelector('.card-img-top').src = url_shiny
-        }
-
-        function disableControl(control) {
-            control.disabled = true;
-        }
-
-        function enableControl(control) {
-            control.disabled = false;
-        }
-
-        function fillOptions(pokemons) {
-
-            let selectPokemon = document.querySelector('#select-pokemon')
-            let option;
-
-            for (let i=0; i<pokemons.length; i++) {
-                option = document.createElement('option');
-                option.text = pokemons[i].name;
-                option.value = pokemons[i].name;
-                selectPokemon.add(option);
-
-            }   
-        }
-
-    </script>
 </body>
 
 </html>
