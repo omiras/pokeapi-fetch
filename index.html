@@ -21,14 +21,15 @@
     </div>
     <div class="container">
         <div class="input-group mb-3">
+            <span class="input-group-text" id="pokemon-select-label">Which pokemon do you want to select?</span>
 
-            <label for="select-pokemon"> Which pokemon do you want to display?</label>
-            <select id="select-pokemon" class="form-select" aria-label="Default select example">
+            <select id="select-pokemon" class="form-select" aria-label="Selected pokemon"
+                aria-describedby="pokemon-select-label">
             </select>
         </div>
 
         <div class="input-group mb-3">
-            <label for="pokemon-number">How many pokemons do you want to retrieve?</label>
+            <span class="input-group-text" id="pokemon-number-label">How many pokemons do you want to retrieve?</span>
             <input type="number" min="1" max="20" value="10" id="pokemon-number" oninput="getSomePokemons(this.value)">
         </div>
     </div>
@@ -63,9 +64,10 @@
 
             fetch(url).
                 then(response => response.json()).
-                then(data => {  
+                then(data => {
                     console.log(data)
-                    fillOptions(data.results)
+                    removeOptions(document.querySelector('#select-pokemon'))
+                    fillOptions(document.querySelector('#select-pokemon'), data.results)
                     enableControl(document.querySelector('#pokemon-number'))
                     enableControl(document.querySelector('#select-pokemon'))
                 })
@@ -91,18 +93,22 @@
             control.disabled = false;
         }
 
-        function fillOptions(pokemons) {
+        function removeOptions(control) {
+            control.querySelectorAll('option').forEach(option => option.remove())
+        }
 
-            let selectPokemon = document.querySelector('#select-pokemon')
+        function fillOptions(control, pokemons) {
+
+            let selectPokemon = control
             let option;
 
-            for (let i=0; i<pokemons.length; i++) {
+            for (let i = 0; i < pokemons.length; i++) {
                 option = document.createElement('option');
                 option.text = pokemons[i].name;
                 option.value = pokemons[i].name;
                 selectPokemon.add(option);
 
-            }   
+            }
         }
 
     </script>
