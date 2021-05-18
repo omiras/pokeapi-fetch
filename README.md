@@ -13,6 +13,8 @@ Aquí tienes un [vídeo demostrativo](https://oscarm.tinytake.com/tt/NTQwMTg4N18
   - Deberás realizar una llamada a la PokeApi pasándole un parámetro por QueryString. Por ejemplo, la siguiente llamada a la PokeApi devuelve los **10** primeros Pokemons de la base de datos [ejemplo](https://pokeapi.co/api/v2/pokemon?limit=10)
   - ¿Cómo se hace para crear opciones de un control \<select>? [Ayuda](https://www.w3schools.com/jsref/met_select_add.asp)
   - ¿Puedes hacer que dicha variable de estado sea establecida desde un control en la interfaz de usuario?
+  
+  Adjunto un [vídeo](https://oscarm.tinytake.com/tt/NTQwNDY5MV8xNjkwMzk3Ng) aproximado de esta implementación.
 
 ## MEGA-BONUS
 
