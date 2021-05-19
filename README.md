@@ -20,7 +20,7 @@ Aquí tienes un [vídeo demostrativo](https://oscarm.tinytake.com/tt/NTQwMTg4N18
 
 - Existe una **biblioteca** para facilitar la comunicación con esta API. Búscala en la documentación de la misma página de la PokeApi y úsala en vez de hacer las llamadas directamente a la API. Tienes la solución a cómo usarla en la carpeta __solution_using_library__
 
-## Solutions
+## Soluciones
   
 Podéis encontrar las solcuiones en las diferentes ramas de este repositorio,
 Podéis también comprobar la solución de [Cristian Cullull](https://github.com/cristian-cll/pokeapi-fetch/)
