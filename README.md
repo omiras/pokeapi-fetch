@@ -23,4 +23,4 @@ Aquí tienes un [vídeo demostrativo](https://oscarm.tinytake.com/tt/NTQwMTg4N18
 ## Soluciones
   
 Podéis encontrar las solcuiones en las diferentes ramas de este repositorio,
-Podéis también comprobar la solución de [Cristian Cullull](https://github.com/cristian-cll/pokeapi-fetch/)
+Podéis también comprobar la solución de [Cristian Cullell](https://github.com/cristian-cll/pokeapi-fetch/)
