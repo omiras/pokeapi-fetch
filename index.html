@@ -12,7 +12,7 @@
 <body>
     <div class="container mb-3">
         <div class="card" style="width: 18rem;">
-            <img class="card-img-top d-none" src="" alt="Card image cap" data-shiny-url="">
+            <img class="card-img-top d-none" src="" alt="Card image cap" data-shiny-url="prueba">
             <div class="card-body">
                 <h5 class="card-title" style=" text-transform: capitalize;">Lorepokemon</h5>
                 <a href="#" class="btn btn-success">Change to Shiny</a>
@@ -22,7 +22,8 @@
     <div class="container">
         <div class="input-group mb-3">
             <span class="input-group-text" id="selected-pokemon-label">Which pokemon do you want to display?</span>
-            <select id="select-pokemon" class="form-select" aria-label="selected pokemon" aria-describedby="selected-pokemon-label">
+            <select id="select-pokemon" class="form-select" aria-label="selected pokemon"
+                aria-describedby="selected-pokemon-label">
                 <option selected>Select one pokemon</option>
                 <option value="pikachu">Pikachu</option>
                 <option value="charmander">Charmander</option>
@@ -34,12 +35,67 @@
 <script>
     // 1. Cuando cambie el valor del selector, tenemos que detectar que opción hemos escogido. Probad que sois capaces de recuperar el valor seleccionado por el usuario con un console.log
 
+    // Seleccionar el elememto del DOM con id="select-pokemon"
+    let selectPokemon = document.querySelector('#select-pokemon')
+
+    // Botón para cambiar a la versión 'brillante'
+    // Recuperamos el elemento del DOM que tiene tanto la clase 'btn' como la clase 'btn-success' (ambas)
+    let btnShiny = document.querySelector('.btn.btn-success')
+    btnShiny.onclick = changeToShiny;
+
+    function changeToShiny() {
+        let shinyURL = document.querySelector('img').getAttribute('data-shiny-url');
+
+        document.querySelector('img').src = shinyURL;
+    }
+
+    // asociar a añadir un listener al evento 'change'; para detectar cuando es que cambia el valor del selector
+    // Primer parámetro: nombre del evento
+    // Segundo parámetro: función
+
+    selectPokemon.addEventListener('change', async (event) => {
+        // Forma 1 de recuperar el valor que el usuario ha seleccionado del selector  console.log(selectPokemon.value)
+
+        // Forma 2: mediante el objeto event, si miramos su propiedad .target, sabremos quien ha disparado el evento. event.target === selectPokemon
+        let userSelectedPokemon = event.target.value;
+        let url = buildURL(userSelectedPokemon);
+
+        let data = await getPokemonFromPokeapi(url);
+
+        // vamos a guardar en data-shiny-url la información de la URL a la imagen dle pokemon en versión "shiny" para usarla a posteriori
+
+        document.querySelector('img').setAttribute('data-shiny-url', data.sprites.front_shiny);
+        updatePokemonInfo(data.name, data.sprites.front_default);
+    })
+
     // 2. En función de la opción escogida, 'montaremos' una URL
     // https://pokeapi.co/api/v2/pokemon/pikachu
     // https://pokeapi.co/api/v2/pokemon/luxio
+    function buildURL(pokemon) {
+        let url = "https://pokeapi.co/api/v2/pokemon/" + pokemon;
+        return url;
+    }
 
     // 3. Utilizar la función fetch para hacer la llamada a esa URL
     // y procesar los datos. Significa, asignar al <h5> del DOM el nombre del pokemon que hemos recuperado de la llamada. Y en la etiqueta <img> debemos establecer el atricuto 'src' con el valor de la URL donde se ubica la imagen del pokemon
+
+    async function getPokemonFromPokeapi(url) {
+
+        // Hago una petición 
+        let response = await fetch(url);
+        let data = await response.json();
+        console.dir(data)
+        return data;
+    }
+
+    function updatePokemonInfo(name, urlPokemon) {
+        document.querySelector('h5.card-title').textContent = name;
+        document.querySelector('img').src = urlPokemon;
+
+        // Debemos eliminar la clase 'd-none' del <img> para que se muestre el elemento HTML
+        document.querySelector('img').classList.remove('d-none');
+    }
+
 </script>
 
 </html>
